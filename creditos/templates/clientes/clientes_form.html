@@ -1,0 +1,27 @@
+{% extends "creditos/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- <p> Esto deberia crear a los listados </p> -->
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            {{form.nombre|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.dni|as_crispy_field}}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block "> <i class="fas fa-database"></i> Agregar Cliente </button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'clientes_list' %}" class="btn btn-secondary btn-block ">
+                <i class="fas fa-stream"> </i> Regresar a la Lista</a>
+        </div>
+    </div>
+</form>
+{% endblock content %}

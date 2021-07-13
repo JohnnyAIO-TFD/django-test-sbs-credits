@@ -1,0 +1,39 @@
+{% extends "creditos/base.html" %}
+
+{% block content %}
+<!-- <p> Estoy mostrando el listado de creditos para aprobar</p> -->
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Nombre del Cliente</td>
+            <td>Monto del credito a solicitar</td>
+            <td>Estado</td>
+            <td>
+                <a href="{% url 'creditos_insert' %}" class="btn btn-outline-success"> 
+                    <i class="fas fa-plus"> </i> Agregar Nueva Solicitud
+                </a>
+                <a href="{% url 'clientes_list' %}" class="btn btn-outline-success"> 
+                    <i class="fas fa-user-shield"></i> Listado de Clientes
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for creditos in creditos_list %}
+            <tr>
+                <td>{{creditos.nombre}}</td>
+                <td>{{creditos.monto}}</td>
+                <td>
+                    {% if creditos.aprobado == True %} Aprobado {% endif %}
+                    {% if creditos.aprobado == False %} Negado {% endif %}
+                </td>
+                <td> 
+                    <a href="{% url 'creditos_update' creditos.id %}" class="btn btn-outline-success"> 
+                        <i class="fas fa-plus"> </i> Ver detalles
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

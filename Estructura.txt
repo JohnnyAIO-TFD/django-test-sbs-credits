@@ -1,0 +1,21 @@
+● SBSCredito
+|
++---● creditos (carpeta de las aplicaciones)
+|   |
+|   +--● migrations (incluye los archivos para actualizacion de las bases de datos)
+|   |  
+|   +--● templates
+|   |  |--● creditos
+|   |  |  |--base.html
+|   |  |  |--creditos_personal.html
+|   |  |  |--listado_creditos.html
+|   | 
+|   |-- models.py
+|   |-- forms.py
+|   |-- urls.py
+|   |-- views.py
+|
++---● SBSCredito (carpeta de proyecto)
+|   |
+|   |--settings.py -> Actualizar los cambios para PostgreSQL
+|   |--urls.py -> Para crear los enlaces de rutas

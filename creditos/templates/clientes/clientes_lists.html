@@ -1,0 +1,40 @@
+{% extends "clientes/base.html" %}
+
+{% block content %}
+<!-- <p> Estoy mostrando el listado de clientes para aprobar</p> -->
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Nombre del Cliente</td>
+            <td>DNI</td>
+            <td>Consultar Estatus</td>
+            <td>
+                <a href="{% url 'clientes_insert' %}" class="btn btn-outline-success"> 
+                    <i class="fas fa-plus"> </i> Agregar Nuevo Cliente
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for clientes in clientes_list %}
+            <tr>
+                <td>{{clientes.nombre}}</td>
+                <td>{{clientes.dni}}</td>
+                <td>
+                    <a href="{% url 'creditos_update' clientes.id %}" class="btn btn-outline-success"> 
+                        <i class="fas fa-file-invoice-dollar"></i> Consultar
+                    </a>
+                </td>
+                <td> <a href="{% url 'clientes_update' clientes.id %}" class="btn text-secundary px-0">
+                    <i class="far fa-edit fa-lg"> </i>
+                    </a>
+                    <form action="{% url 'clientes_delete' clientes.id %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"> <i class="far fa-trash-alt fa-lg text-danger float-right"> </i> </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

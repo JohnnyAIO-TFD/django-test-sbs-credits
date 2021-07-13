@@ -1,0 +1,44 @@
+{% extends "creditos/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- <p> Esto deberia crear a los listados </p> -->
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-3">
+            {{form.nombre|as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+            {{form.monto|as_crispy_field}}
+        </div>
+        {% if total %}
+        <div class="col-md-3">
+            {{form.aprobado|as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+            Monto Acumulado: {{ total }}$
+        </div>
+        <div class="col-md-2">
+            Sugerencia: {{ decision }}, Probabilidad: {{ ranking }}
+        </div>
+        {% endif %}
+    </div>
+    <br/>
+    <div class="row">
+        {% if total %}
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block "> <i class="fas fa-database"></i> Realizar Cambios </button>
+        </div>
+        {% else %}
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block "> <i class="fas fa-database"></i> Agregar </button>
+        </div>
+        {% endif %}
+        <div class="col-md-4">
+            <a href="{% url 'creditos_list' %}" class="btn btn-secondary btn-block ">
+                <i class="fas fa-stream"> </i> Regresar a la Lista</a>
+        </div>
+    </div>
+</form>
+{% endblock content %}
